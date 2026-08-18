@@ -1,0 +1,1100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.5.final using JasperReports Library version 6.20.5-3efcf2e67f959db3888d79f73dde2dbd7acb4f8e  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="bips_transaction" pageWidth="2310" pageHeight="842" columnWidth="2270" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="92cef74b-c06a-4c0b-b137-d66bd05b4a9a">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="CIMBIPS.jrdax"/>
+	<parameter name="TRAN_DATE1" class="java.lang.String"/>
+	<parameter name="TRAN_DATE2" class="java.lang.String"/>
+	<parameter name="merchant_id" class="java.lang.String"/>
+	<parameter name="DETAILED_ADDRESS" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[select * from BIPS_OUTWARD_TRANSACTION_MONITORING_TABLE WHERE merchant_id=$P{merchant_id}  and tran_date BETWEEN $P{TRAN_DATE1} AND $P{TRAN_DATE2}
+union all
+select * from BIPS_OUTWARD_TRANSACTION_HIST_MONITORING_TABLE WHERE merchant_id=$P{merchant_id} and tran_date BETWEEN $P{TRAN_DATE1} AND $P{TRAN_DATE2}]]>
+	</queryString>
+	<field name="MASTER_REF_ID" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="MASTER_REF_ID"/>
+		<property name="com.jaspersoft.studio.field.label" value="MASTER_REF_ID"/>
+	</field>
+	<field name="P_ID" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="P_ID"/>
+		<property name="com.jaspersoft.studio.field.label" value="P_ID"/>
+	</field>
+	<field name="DEVICE_ID" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="DEVICE_ID"/>
+		<property name="com.jaspersoft.studio.field.label" value="DEVICE_ID"/>
+	</field>
+	<field name="DEVICE_IP" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="DEVICE_IP"/>
+		<property name="com.jaspersoft.studio.field.label" value="DEVICE_IP"/>
+	</field>
+	<field name="NAT_ID" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="NAT_ID"/>
+		<property name="com.jaspersoft.studio.field.label" value="NAT_ID"/>
+	</field>
+	<field name="INIT_CHANNEL_ID" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="INIT_CHANNEL_ID"/>
+		<property name="com.jaspersoft.studio.field.label" value="INIT_CHANNEL_ID"/>
+	</field>
+	<field name="RESV_FIELD1" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="RESV_FIELD1"/>
+		<property name="com.jaspersoft.studio.field.label" value="RESV_FIELD1"/>
+	</field>
+	<field name="RESV_FIELD2" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="RESV_FIELD2"/>
+		<property name="com.jaspersoft.studio.field.label" value="RESV_FIELD2"/>
+	</field>
+	<field name="REQ_UNIQUE_ID" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="REQ_UNIQUE_ID"/>
+		<property name="com.jaspersoft.studio.field.label" value="REQ_UNIQUE_ID"/>
+	</field>
+	<field name="SEQUENCE_UNIQUE_ID" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="SEQUENCE_UNIQUE_ID"/>
+		<property name="com.jaspersoft.studio.field.label" value="SEQUENCE_UNIQUE_ID"/>
+	</field>
+	<field name="CIM_MESSAGE_ID" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="CIM_MESSAGE_ID"/>
+		<property name="com.jaspersoft.studio.field.label" value="CIM_MESSAGE_ID"/>
+	</field>
+	<field name="IPSX_MESSAGE_ID" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="IPSX_MESSAGE_ID"/>
+		<property name="com.jaspersoft.studio.field.label" value="IPSX_MESSAGE_ID"/>
+	</field>
+	<field name="TRAN_AUDIT_NUMBER" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="TRAN_AUDIT_NUMBER"/>
+		<property name="com.jaspersoft.studio.field.label" value="TRAN_AUDIT_NUMBER"/>
+	</field>
+	<field name="TRAN_DATE" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.name" value="TRAN_DATE"/>
+		<property name="com.jaspersoft.studio.field.label" value="TRAN_DATE"/>
+	</field>
+	<field name="CIM_ACCOUNT" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="CIM_ACCOUNT"/>
+		<property name="com.jaspersoft.studio.field.label" value="CIM_ACCOUNT"/>
+	</field>
+	<field name="IPSX_ACCOUNT" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="IPSX_ACCOUNT"/>
+		<property name="com.jaspersoft.studio.field.label" value="IPSX_ACCOUNT"/>
+	</field>
+	<field name="CIM_ACCOUNT_NAME" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="CIM_ACCOUNT_NAME"/>
+		<property name="com.jaspersoft.studio.field.label" value="CIM_ACCOUNT_NAME"/>
+	</field>
+	<field name="IPSX_ACCOUNT_NAME" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="IPSX_ACCOUNT_NAME"/>
+		<property name="com.jaspersoft.studio.field.label" value="IPSX_ACCOUNT_NAME"/>
+	</field>
+	<field name="TRAN_AMOUNT" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="TRAN_AMOUNT"/>
+		<property name="com.jaspersoft.studio.field.label" value="TRAN_AMOUNT"/>
+	</field>
+	<field name="MSG_TYPE" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="MSG_TYPE"/>
+		<property name="com.jaspersoft.studio.field.label" value="MSG_TYPE"/>
+	</field>
+	<field name="TRAN_CURRENCY" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="TRAN_CURRENCY"/>
+		<property name="com.jaspersoft.studio.field.label" value="TRAN_CURRENCY"/>
+	</field>
+	<field name="CBS_STATUS" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="CBS_STATUS"/>
+		<property name="com.jaspersoft.studio.field.label" value="CBS_STATUS"/>
+	</field>
+	<field name="CBS_STATUS_ERROR" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="CBS_STATUS_ERROR"/>
+		<property name="com.jaspersoft.studio.field.label" value="CBS_STATUS_ERROR"/>
+	</field>
+	<field name="CBS_RESPONSE_TIME" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.name" value="CBS_RESPONSE_TIME"/>
+		<property name="com.jaspersoft.studio.field.label" value="CBS_RESPONSE_TIME"/>
+	</field>
+	<field name="IPSX_STATUS" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="IPSX_STATUS"/>
+		<property name="com.jaspersoft.studio.field.label" value="IPSX_STATUS"/>
+	</field>
+	<field name="IPSX_STATUS_CODE" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="IPSX_STATUS_CODE"/>
+		<property name="com.jaspersoft.studio.field.label" value="IPSX_STATUS_CODE"/>
+	</field>
+	<field name="IPSX_STATUS_ERROR" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="IPSX_STATUS_ERROR"/>
+		<property name="com.jaspersoft.studio.field.label" value="IPSX_STATUS_ERROR"/>
+	</field>
+	<field name="IPSX_RESPONSE_TIME" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.name" value="IPSX_RESPONSE_TIME"/>
+		<property name="com.jaspersoft.studio.field.label" value="IPSX_RESPONSE_TIME"/>
+	</field>
+	<field name="TRAN_STATUS" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="TRAN_STATUS"/>
+		<property name="com.jaspersoft.studio.field.label" value="TRAN_STATUS"/>
+	</field>
+	<field name="RESPONSE_STATUS" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="RESPONSE_STATUS"/>
+		<property name="com.jaspersoft.studio.field.label" value="RESPONSE_STATUS"/>
+	</field>
+	<field name="INITIATOR_BANK" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="INITIATOR_BANK"/>
+		<property name="com.jaspersoft.studio.field.label" value="INITIATOR_BANK"/>
+	</field>
+	<field name="RECEIVER_BANK" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="RECEIVER_BANK"/>
+		<property name="com.jaspersoft.studio.field.label" value="RECEIVER_BANK"/>
+	</field>
+	<field name="RESPONSE_DESC" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="RESPONSE_DESC"/>
+		<property name="com.jaspersoft.studio.field.label" value="RESPONSE_DESC"/>
+	</field>
+	<field name="RESPONSE_TIME" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.name" value="RESPONSE_TIME"/>
+		<property name="com.jaspersoft.studio.field.label" value="RESPONSE_TIME"/>
+	</field>
+	<field name="CIM_CNF_REQUEST_UID" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="CIM_CNF_REQUEST_UID"/>
+		<property name="com.jaspersoft.studio.field.label" value="CIM_CNF_REQUEST_UID"/>
+	</field>
+	<field name="CIM_CNF_STATUS" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="CIM_CNF_STATUS"/>
+		<property name="com.jaspersoft.studio.field.label" value="CIM_CNF_STATUS"/>
+	</field>
+	<field name="CIM_CNF_STATUS_ERROR" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="CIM_CNF_STATUS_ERROR"/>
+		<property name="com.jaspersoft.studio.field.label" value="CIM_CNF_STATUS_ERROR"/>
+	</field>
+	<field name="SERVICE_NAME" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="SERVICE_NAME"/>
+		<property name="com.jaspersoft.studio.field.label" value="SERVICE_NAME"/>
+	</field>
+	<field name="SESSION_ID" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="SESSION_ID"/>
+		<property name="com.jaspersoft.studio.field.label" value="SESSION_ID"/>
+	</field>
+	<field name="SOURCE_SYSTEM" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="SOURCE_SYSTEM"/>
+		<property name="com.jaspersoft.studio.field.label" value="SOURCE_SYSTEM"/>
+	</field>
+	<field name="TRANSACTION_REF_CODE" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="TRANSACTION_REF_CODE"/>
+		<property name="com.jaspersoft.studio.field.label" value="TRANSACTION_REF_CODE"/>
+	</field>
+	<field name="TRANSACTION_TYPE" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="TRANSACTION_TYPE"/>
+		<property name="com.jaspersoft.studio.field.label" value="TRANSACTION_TYPE"/>
+	</field>
+	<field name="PART_TRAN_TYPE" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="PART_TRAN_TYPE"/>
+		<property name="com.jaspersoft.studio.field.label" value="PART_TRAN_TYPE"/>
+	</field>
+	<field name="IPS_STATUS" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="IPS_STATUS"/>
+		<property name="com.jaspersoft.studio.field.label" value="IPS_STATUS"/>
+	</field>
+	<field name="AKG_DESC" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="AKG_DESC"/>
+		<property name="com.jaspersoft.studio.field.label" value="AKG_DESC"/>
+	</field>
+	<field name="AKG_STATUS" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="AKG_STATUS"/>
+		<property name="com.jaspersoft.studio.field.label" value="AKG_STATUS"/>
+	</field>
+	<field name="AKG_TIME" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.name" value="AKG_TIME"/>
+		<property name="com.jaspersoft.studio.field.label" value="AKG_TIME"/>
+	</field>
+	<field name="ENTRY_USER" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="ENTRY_USER"/>
+		<property name="com.jaspersoft.studio.field.label" value="ENTRY_USER"/>
+	</field>
+	<field name="ENTRY_TIME" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.name" value="ENTRY_TIME"/>
+		<property name="com.jaspersoft.studio.field.label" value="ENTRY_TIME"/>
+	</field>
+	<field name="ENTITY_CRE_FLG" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="ENTITY_CRE_FLG"/>
+		<property name="com.jaspersoft.studio.field.label" value="ENTITY_CRE_FLG"/>
+	</field>
+	<field name="DEL_FLG" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="DEL_FLG"/>
+		<property name="com.jaspersoft.studio.field.label" value="DEL_FLG"/>
+	</field>
+	<field name="AUTH_USER" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="AUTH_USER"/>
+		<property name="com.jaspersoft.studio.field.label" value="AUTH_USER"/>
+	</field>
+	<field name="AUTH_TIME" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.name" value="AUTH_TIME"/>
+		<property name="com.jaspersoft.studio.field.label" value="AUTH_TIME"/>
+	</field>
+	<field name="MODIFY_USER" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="MODIFY_USER"/>
+		<property name="com.jaspersoft.studio.field.label" value="MODIFY_USER"/>
+	</field>
+	<field name="MODIFY_TIME" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.name" value="MODIFY_TIME"/>
+		<property name="com.jaspersoft.studio.field.label" value="MODIFY_TIME"/>
+	</field>
+	<field name="MODIFY_FLG" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="MODIFY_FLG"/>
+		<property name="com.jaspersoft.studio.field.label" value="MODIFY_FLG"/>
+	</field>
+	<field name="MCONNECTIN" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="MCONNECTIN"/>
+		<property name="com.jaspersoft.studio.field.label" value="MCONNECTIN"/>
+	</field>
+	<field name="MCONNECTINDATE" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.name" value="MCONNECTINDATE"/>
+		<property name="com.jaspersoft.studio.field.label" value="MCONNECTINDATE"/>
+	</field>
+	<field name="MCONNECTOUT" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="MCONNECTOUT"/>
+		<property name="com.jaspersoft.studio.field.label" value="MCONNECTOUT"/>
+	</field>
+	<field name="MCONNECTOUTDATE" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.name" value="MCONNECTOUTDATE"/>
+		<property name="com.jaspersoft.studio.field.label" value="MCONNECTOUTDATE"/>
+	</field>
+	<field name="CBSIN" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="CBSIN"/>
+		<property name="com.jaspersoft.studio.field.label" value="CBSIN"/>
+	</field>
+	<field name="CBSINDATE" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.name" value="CBSINDATE"/>
+		<property name="com.jaspersoft.studio.field.label" value="CBSINDATE"/>
+	</field>
+	<field name="CBSOUT" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="CBSOUT"/>
+		<property name="com.jaspersoft.studio.field.label" value="CBSOUT"/>
+	</field>
+	<field name="CBSOUTDATE" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.name" value="CBSOUTDATE"/>
+		<property name="com.jaspersoft.studio.field.label" value="CBSOUTDATE"/>
+	</field>
+	<field name="CBSREVERSEIN" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="CBSREVERSEIN"/>
+		<property name="com.jaspersoft.studio.field.label" value="CBSREVERSEIN"/>
+	</field>
+	<field name="CBSREVERSEINDATE" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.name" value="CBSREVERSEINDATE"/>
+		<property name="com.jaspersoft.studio.field.label" value="CBSREVERSEINDATE"/>
+	</field>
+	<field name="CBSREVERSEOUT" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="CBSREVERSEOUT"/>
+		<property name="com.jaspersoft.studio.field.label" value="CBSREVERSEOUT"/>
+	</field>
+	<field name="CBSREVERSEOUTDATE" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.name" value="CBSREVERSEOUTDATE"/>
+		<property name="com.jaspersoft.studio.field.label" value="CBSREVERSEOUTDATE"/>
+	</field>
+	<field name="IPSIN" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="IPSIN"/>
+		<property name="com.jaspersoft.studio.field.label" value="IPSIN"/>
+	</field>
+	<field name="IPSINDATE" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.name" value="IPSINDATE"/>
+		<property name="com.jaspersoft.studio.field.label" value="IPSINDATE"/>
+	</field>
+	<field name="IPSOUT" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="IPSOUT"/>
+		<property name="com.jaspersoft.studio.field.label" value="IPSOUT"/>
+	</field>
+	<field name="IPSOUTDATE" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.name" value="IPSOUTDATE"/>
+		<property name="com.jaspersoft.studio.field.label" value="IPSOUTDATE"/>
+	</field>
+	<field name="END_END_ID" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="END_END_ID"/>
+		<property name="com.jaspersoft.studio.field.label" value="END_END_ID"/>
+	</field>
+	<field name="NET_MIR" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="NET_MIR"/>
+		<property name="com.jaspersoft.studio.field.label" value="NET_MIR"/>
+	</field>
+	<field name="USER_REF" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="USER_REF"/>
+		<property name="com.jaspersoft.studio.field.label" value="USER_REF"/>
+	</field>
+	<field name="TRAN_TYPE_CODE" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="TRAN_TYPE_CODE"/>
+		<property name="com.jaspersoft.studio.field.label" value="TRAN_TYPE_CODE"/>
+	</field>
+	<field name="INSTG_AGT" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="INSTG_AGT"/>
+		<property name="com.jaspersoft.studio.field.label" value="INSTG_AGT"/>
+	</field>
+	<field name="INSTD_AGT" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="INSTD_AGT"/>
+		<property name="com.jaspersoft.studio.field.label" value="INSTD_AGT"/>
+	</field>
+	<field name="REG_REP" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="REG_REP"/>
+		<property name="com.jaspersoft.studio.field.label" value="REG_REP"/>
+	</field>
+	<field name="RMT_INFO" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="RMT_INFO"/>
+		<property name="com.jaspersoft.studio.field.label" value="RMT_INFO"/>
+	</field>
+	<field name="PMT_INF_ID" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="PMT_INF_ID"/>
+		<property name="com.jaspersoft.studio.field.label" value="PMT_INF_ID"/>
+	</field>
+	<field name="PMT_MTD" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="PMT_MTD"/>
+		<property name="com.jaspersoft.studio.field.label" value="PMT_MTD"/>
+	</field>
+	<field name="INSTR_ID" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="INSTR_ID"/>
+		<property name="com.jaspersoft.studio.field.label" value="INSTR_ID"/>
+	</field>
+	<field name="SVC_LVL" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="SVC_LVL"/>
+		<property name="com.jaspersoft.studio.field.label" value="SVC_LVL"/>
+	</field>
+	<field name="LCL_INSTRM" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="LCL_INSTRM"/>
+		<property name="com.jaspersoft.studio.field.label" value="LCL_INSTRM"/>
+	</field>
+	<field name="CTGY_PURP" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="CTGY_PURP"/>
+		<property name="com.jaspersoft.studio.field.label" value="CTGY_PURP"/>
+	</field>
+	<field name="DBTR_AGT" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="DBTR_AGT"/>
+		<property name="com.jaspersoft.studio.field.label" value="DBTR_AGT"/>
+	</field>
+	<field name="DBTR_AGT_ACC" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="DBTR_AGT_ACC"/>
+		<property name="com.jaspersoft.studio.field.label" value="DBTR_AGT_ACC"/>
+	</field>
+	<field name="CDTR_AGT" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="CDTR_AGT"/>
+		<property name="com.jaspersoft.studio.field.label" value="CDTR_AGT"/>
+	</field>
+	<field name="CDTR_AGT_ACC" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="CDTR_AGT_ACC"/>
+		<property name="com.jaspersoft.studio.field.label" value="CDTR_AGT_ACC"/>
+	</field>
+	<field name="REV_AGE" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="REV_AGE"/>
+		<property name="com.jaspersoft.studio.field.label" value="REV_AGE"/>
+	</field>
+	<field name="VALUE_DATE" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.name" value="VALUE_DATE"/>
+		<property name="com.jaspersoft.studio.field.label" value="VALUE_DATE"/>
+	</field>
+	<field name="CHARGE_APP_FLG" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="CHARGE_APP_FLG"/>
+		<property name="com.jaspersoft.studio.field.label" value="CHARGE_APP_FLG"/>
+	</field>
+	<field name="CHRG_BR" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="CHRG_BR"/>
+		<property name="com.jaspersoft.studio.field.label" value="CHRG_BR"/>
+	</field>
+	<field name="TRAN_RMKS" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="TRAN_RMKS"/>
+		<property name="com.jaspersoft.studio.field.label" value="TRAN_RMKS"/>
+	</field>
+	<field name="GLOBAL_ID" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="GLOBAL_ID"/>
+		<property name="com.jaspersoft.studio.field.label" value="GLOBAL_ID"/>
+	</field>
+	<field name="POINT_INIT" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="POINT_INIT"/>
+		<property name="com.jaspersoft.studio.field.label" value="POINT_INIT"/>
+	</field>
+	<field name="MERCHANT_ID" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="MERCHANT_ID"/>
+		<property name="com.jaspersoft.studio.field.label" value="MERCHANT_ID"/>
+	</field>
+	<field name="MCC" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="MCC"/>
+		<property name="com.jaspersoft.studio.field.label" value="MCC"/>
+	</field>
+	<field name="CONV_FLG" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="CONV_FLG"/>
+		<property name="com.jaspersoft.studio.field.label" value="CONV_FLG"/>
+	</field>
+	<field name="CONV_FEE_TYPE" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="CONV_FEE_TYPE"/>
+		<property name="com.jaspersoft.studio.field.label" value="CONV_FEE_TYPE"/>
+	</field>
+	<field name="CONV_FEE" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="CONV_FEE"/>
+		<property name="com.jaspersoft.studio.field.label" value="CONV_FEE"/>
+	</field>
+	<field name="MERCHANT_CITY" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="MERCHANT_CITY"/>
+		<property name="com.jaspersoft.studio.field.label" value="MERCHANT_CITY"/>
+	</field>
+	<field name="MERCHANT_CNTRY" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="MERCHANT_CNTRY"/>
+		<property name="com.jaspersoft.studio.field.label" value="MERCHANT_CNTRY"/>
+	</field>
+	<field name="MERCHANT_POSTAL_CD" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="MERCHANT_POSTAL_CD"/>
+		<property name="com.jaspersoft.studio.field.label" value="MERCHANT_POSTAL_CD"/>
+	</field>
+	<field name="MERCHANT_BILL_NUMBER" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="MERCHANT_BILL_NUMBER"/>
+		<property name="com.jaspersoft.studio.field.label" value="MERCHANT_BILL_NUMBER"/>
+	</field>
+	<field name="MERCHANT_MOBILE" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="MERCHANT_MOBILE"/>
+		<property name="com.jaspersoft.studio.field.label" value="MERCHANT_MOBILE"/>
+	</field>
+	<field name="MERCHANT_REF_LABEL" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="MERCHANT_REF_LABEL"/>
+		<property name="com.jaspersoft.studio.field.label" value="MERCHANT_REF_LABEL"/>
+	</field>
+	<field name="MERCHANT_PURP_TRAN" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="MERCHANT_PURP_TRAN"/>
+		<property name="com.jaspersoft.studio.field.label" value="MERCHANT_PURP_TRAN"/>
+	</field>
+	<field name="MERCHANT_STORE_LABEL" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="MERCHANT_STORE_LABEL"/>
+		<property name="com.jaspersoft.studio.field.label" value="MERCHANT_STORE_LABEL"/>
+	</field>
+	<field name="MERCHANT_LOYALTY_NUMBER" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="MERCHANT_LOYALTY_NUMBER"/>
+		<property name="com.jaspersoft.studio.field.label" value="MERCHANT_LOYALTY_NUMBER"/>
+	</field>
+	<field name="MERCHANT_CUSTOMER_LABEL" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="MERCHANT_CUSTOMER_LABEL"/>
+		<property name="com.jaspersoft.studio.field.label" value="MERCHANT_CUSTOMER_LABEL"/>
+	</field>
+	<field name="MERCHANT_TERMINAL_LABEL" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="MERCHANT_TERMINAL_LABEL"/>
+		<property name="com.jaspersoft.studio.field.label" value="MERCHANT_TERMINAL_LABEL"/>
+	</field>
+	<field name="MERCHANT_ADDL_DATA_REQUEST" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="MERCHANT_ADDL_DATA_REQUEST"/>
+		<property name="com.jaspersoft.studio.field.label" value="MERCHANT_ADDL_DATA_REQUEST"/>
+	</field>
+	<field name="TIP_OR_CONV_INDICATOR" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="TIP_OR_CONV_INDICATOR"/>
+		<property name="com.jaspersoft.studio.field.label" value="TIP_OR_CONV_INDICATOR"/>
+	</field>
+	<field name="TIP_AMOUNT" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="TIP_AMOUNT"/>
+		<property name="com.jaspersoft.studio.field.label" value="TIP_AMOUNT"/>
+	</field>
+	<field name="CONV_AMOUNT" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="CONV_AMOUNT"/>
+		<property name="com.jaspersoft.studio.field.label" value="CONV_AMOUNT"/>
+	</field>
+	<field name="USER_ID" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="USER_ID"/>
+		<property name="com.jaspersoft.studio.field.label" value="USER_ID"/>
+	</field>
+	<field name="BILL_DATE" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.name" value="BILL_DATE"/>
+		<property name="com.jaspersoft.studio.field.label" value="BILL_DATE"/>
+	</field>
+	<field name="BILL_AMOUNT" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="BILL_AMOUNT"/>
+		<property name="com.jaspersoft.studio.field.label" value="BILL_AMOUNT"/>
+	</field>
+	<field name="REVERSAL_DATE" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.name" value="REVERSAL_DATE"/>
+		<property name="com.jaspersoft.studio.field.label" value="REVERSAL_DATE"/>
+	</field>
+	<field name="REVERSAL_AMOUNT" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="REVERSAL_AMOUNT"/>
+		<property name="com.jaspersoft.studio.field.label" value="REVERSAL_AMOUNT"/>
+	</field>
+	<field name="REVERSAL_REMARKS" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="REVERSAL_REMARKS"/>
+		<property name="com.jaspersoft.studio.field.label" value="REVERSAL_REMARKS"/>
+	</field>
+	<field name="UNIT_ID" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="UNIT_ID"/>
+		<property name="com.jaspersoft.studio.field.label" value="UNIT_ID"/>
+	</field>
+	<field name="UNIT_NAME" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="UNIT_NAME"/>
+		<property name="com.jaspersoft.studio.field.label" value="UNIT_NAME"/>
+	</field>
+	<field name="USER_NAME" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="USER_NAME"/>
+		<property name="com.jaspersoft.studio.field.label" value="USER_NAME"/>
+	</field>
+	<variable name="TRANSACTION_COUNT" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[$F{TRAN_DATE}]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_AMOUNT" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{TRAN_AMOUNT}]]></variableExpression>
+	</variable>
+	<variable name="SUCCESS_TRAN_AMOUNT" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{TRAN_STATUS}.equals("SUCCESS") ? $F{TRAN_AMOUNT} : 0.0]]></variableExpression>
+	</variable>
+	<variable name="SUCCESS_TRAN_COUNT" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{TRAN_STATUS}.equals("SUCCESS") ? 1 : 0]]></variableExpression>
+	</variable>
+	<variable name="FAILURE_TRAN_AMOUNT" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{TRAN_STATUS}.equals("FAILURE") ? $F{TRAN_AMOUNT} : 0.0]]></variableExpression>
+	</variable>
+	<variable name="FAILURE_TRAN_COUNT" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{TRAN_STATUS}.equals("FAILURE") ? 1 : 0]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="160" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="1560" y="140" width="190" height="20" backcolor="#7FCCF0" uuid="5989cf66-9615-4127-8301-8000caf6516c"/>
+				<box leftPadding="5">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[AMOUNT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="1180" y="140" width="190" height="20" backcolor="#7FCCF0" uuid="8e123764-7595-485b-9e68-e234ded0940e"/>
+				<box leftPadding="5">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[BANK NAME]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="990" y="140" width="190" height="20" backcolor="#7FCCF0" uuid="f80fadab-fec3-4cb8-a61b-277db4eb65e1"/>
+				<box leftPadding="5">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[IPSX ACCOUNT NAME]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="130" y="140" width="160" height="20" backcolor="#7FCCF0" uuid="d9613c2b-6df0-4098-866a-c445f864a167"/>
+				<box leftPadding="5">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[REF ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="1370" y="140" width="190" height="20" backcolor="#7FCCF0" uuid="87ffef6e-a6f1-4dce-ab3c-954a6f05cf9c"/>
+				<box leftPadding="5">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CURRENCY]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="140" width="130" height="20" backcolor="#7FCCF0" uuid="a3688bb1-5b7b-4c99-9fc8-0a4e2c44fe42"/>
+				<box leftPadding="5">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TRAN DATE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="1750" y="140" width="189" height="20" backcolor="#7FCCF0" uuid="aec58064-64e3-4694-9168-ef2cf1ef1470"/>
+				<box leftPadding="5">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[STATUS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="290" y="140" width="170" height="20" backcolor="#7FCCF0" uuid="bc63cdc0-f244-48a6-81ca-36183d46a627"/>
+				<box leftPadding="5">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TRANSACTION TYPE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="460" y="140" width="170" height="20" backcolor="#7FCCF0" uuid="21d2d2be-6b7c-4d37-ba76-56ba7c4b6082"/>
+				<box leftPadding="5">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[BOB ACCOUNT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="630" y="140" width="170" height="20" backcolor="#7FCCF0" uuid="689b3e93-7233-4ede-9b8c-7cccb4522ead"/>
+				<box leftPadding="5">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[BOB ACCOUNT NAME]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="800" y="140" width="190" height="20" backcolor="#7FCCF0" uuid="56afc7ee-bffc-47cf-8cb7-18c4eae7fa24"/>
+				<box leftPadding="5">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[IPSX ACCOUNT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="990" y="80" width="379" height="30" uuid="06b544e4-f3bf-4901-8a03-289ca78d271b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TRANSACTION STATEMENT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="1940" y="140" width="190" height="20" backcolor="#7FCCF0" uuid="e7edb9bb-4e9d-4e1c-8fca-65626bb57d40"/>
+				<box leftPadding="5">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[REVERSAL REMARKS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="2130" y="140" width="140" height="20" backcolor="#7FCCF0" uuid="b811f77e-4d3f-4f33-9788-c593963f01c7"/>
+				<box leftPadding="5">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[AUTH USER]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="1940" y="110" width="330" height="20" uuid="7145b912-7d47-45b4-a33a-276a4b679e3e"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Verdana" size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["FROM : "+$P{TRAN_DATE1}+"   TO : "+$P{TRAN_DATE2}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="0" y="0" width="80" height="79" uuid="02197135-56fa-4aa1-ae0d-d661994aaef3"/>
+				<imageExpression><![CDATA["https://BWQRBIPS.bankofbaroda.co.in:8443/IPSAdmin/images/BOB_logo.png"]]></imageExpression>
+			</image>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="80" width="310" height="50" uuid="1fd0014c-5ac6-47c2-bf3b-17a5d989fb12"/>
+				<textFieldExpression><![CDATA[$P{DETAILED_ADDRESS}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement mode="Transparent" x="460" y="0" width="170" height="20" uuid="4e41e1a3-335c-41b7-b491-7a707c4d6a23">
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle" markup="html">
+					<font fontName="Verdana" size="12"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CIM_ACCOUNT}.substring(0, 4) + "XXXXXX" + $F{CIM_ACCOUNT}.substring($F{CIM_ACCOUNT}.length() - 4)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement mode="Transparent" x="290" y="0" width="170" height="20" uuid="a32072f1-dea2-442d-b069-b41b4c66c5a9">
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle" markup="html">
+					<font fontName="Verdana" size="12"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{MSG_TYPE}.toUpperCase()]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00;#,##0.00" isBlankWhenNull="true">
+				<reportElement mode="Transparent" x="1370" y="0" width="190" height="20" uuid="a280d6cd-7650-4c37-9a13-5bbdc80005cd">
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle" markup="html">
+					<font fontName="Verdana" size="12"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TRAN_CURRENCY}.toUpperCase()]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00;#,##0.00" isBlankWhenNull="true">
+				<reportElement mode="Transparent" x="1560" y="0" width="190" height="20" uuid="fb39541a-982a-47cc-9ec6-3f76e8265ae5">
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+					<property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle" markup="html">
+					<font fontName="Verdana" size="12"/>
+					<paragraph leftIndent="5" rightIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TRAN_AMOUNT}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd-MM-yyyy" isBlankWhenNull="true">
+				<reportElement mode="Transparent" x="800" y="0" width="190" height="20" uuid="8d93735b-d1a2-46e1-b3c2-fef5a22ac570">
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle" markup="html">
+					<font fontName="Verdana" size="12"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{IPSX_ACCOUNT}.substring(0, 4) + "XXXXXX" + $F{IPSX_ACCOUNT}.substring($F{IPSX_ACCOUNT}.length() - 4)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement mode="Transparent" x="630" y="0" width="170" height="20" uuid="65f7ae8f-ef3c-43c0-b1ec-54e9ae95465d">
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle" markup="html">
+					<font fontName="Verdana" size="12"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CIM_ACCOUNT_NAME}.toUpperCase()]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00;#,##0.00" isBlankWhenNull="true">
+				<reportElement mode="Transparent" x="1180" y="0" width="190" height="20" uuid="b396eee3-aeee-48c8-86fd-94fc5d6d448f">
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle" markup="html">
+					<font fontName="Verdana" size="12"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{INITIATOR_BANK}.toUpperCase()]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd-MM-yyyy" isBlankWhenNull="true">
+				<reportElement mode="Transparent" x="990" y="0" width="190" height="20" uuid="8f15be2b-c215-4048-894e-069e495a7b12">
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle" markup="html">
+					<font fontName="Verdana" size="12"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{IPSX_ACCOUNT_NAME}.toUpperCase()]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd-MM-yyyy" isBlankWhenNull="true">
+				<reportElement mode="Transparent" x="130" y="0" width="160" height="20" uuid="65b71702-ca7a-46ac-aa43-c8d0f56dc16d">
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle" markup="html">
+					<font fontName="Verdana" size="12"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{MASTER_REF_ID}.toUpperCase()]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd-MM-yyyy h:mm a" isBlankWhenNull="true">
+				<reportElement mode="Transparent" x="0" y="0" width="130" height="20" uuid="af82c639-05d6-4e8b-bcd7-515fcfe84e4b">
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle" markup="html">
+					<font fontName="Verdana" size="10"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TRAN_DATE}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00;#,##0.00" isBlankWhenNull="true">
+				<reportElement mode="Transparent" x="1750" y="0" width="189" height="20" backcolor="#CCCCCC" uuid="77c54f1f-97b4-4487-ac35-23d802ffa7c2"/>
+				<box leftPadding="5">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Verdana" size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TRAN_STATUS}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00;#,##0.00" isBlankWhenNull="true">
+				<reportElement mode="Transparent" x="1940" y="0" width="190" height="20" uuid="0792061b-c259-4eec-9dab-af4eb71c4d9c">
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle" markup="html">
+					<font fontName="Verdana" size="12"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{REVERSAL_REMARKS}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00;#,##0.00" isBlankWhenNull="true">
+				<reportElement mode="Transparent" x="2130" y="0" width="140" height="20" backcolor="#CCCCCC" uuid="061fa453-853d-41d2-9ff9-038bb6c8d202"/>
+				<box leftPadding="5">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Verdana" size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{AUTH_USER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="52">
+			<staticText>
+				<reportElement x="0" y="30" width="460" height="20" uuid="de1c2068-9ba0-4792-9451-dfe9b5941c22"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[This is a system-generated statement. Hence, it does not require any signature.]]></text>
+			</staticText>
+			<textField pattern="PAGE NO ">
+				<reportElement x="2130" y="30" width="140" height="20" uuid="d1c1be02-326d-44a8-9833-43ed1cd2e794"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<summary>
+		<band height="83" splitType="Stretch">
+			<staticText>
+				<reportElement x="130" y="41" width="160" height="21" uuid="658f4a6e-50de-4260-be79-d6fa23fbc32f"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Verdana" size="12"/>
+				</textElement>
+				<text><![CDATA[TOTAL TRANSACTION]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="130" y="62" width="160" height="21" uuid="b58be711-ec58-4df8-b1e7-f502e2aa4359"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Verdana" size="12"/>
+				</textElement>
+				<text><![CDATA[AMOUNT]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="290" y="41" width="170" height="21" uuid="5a051926-3ed9-44c5-aa01-4573f7768e30">
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Verdana" size="12"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TRANSACTION_COUNT}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00;#,##0.00">
+				<reportElement x="290" y="62" width="170" height="21" uuid="55082ac8-f3dc-429f-b484-8181adb9305a">
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Verdana" size="12"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_AMOUNT}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="800" y="40" width="190" height="21" uuid="c5d813e5-3030-49d8-b134-504c48efb7f2"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Verdana" size="12"/>
+				</textElement>
+				<text><![CDATA[SUCCESS TRANSACTION]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="990" y="41" width="189" height="21" uuid="0f5edc49-4d40-41f6-aba0-24cdbf64edfd">
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Verdana" size="12"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{SUCCESS_TRAN_COUNT}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00;#,##0.00">
+				<reportElement x="990" y="62" width="189" height="21" uuid="3b7a5427-8cc2-4d15-bf9c-a130218c954b">
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Verdana" size="12"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{SUCCESS_TRAN_AMOUNT}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="800" y="61" width="190" height="21" uuid="3d9c5c6f-3467-4bf2-82b3-62612ae1d078"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Verdana" size="12"/>
+				</textElement>
+				<text><![CDATA[AMOUNT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1560" y="40" width="190" height="21" uuid="d9b8bcfa-6b6d-41ab-b926-cfc965458bd0"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Verdana" size="12"/>
+				</textElement>
+				<text><![CDATA[FAILURE TRANSACTION]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1560" y="61" width="190" height="21" uuid="dce24407-86e3-4977-b4aa-35cdad3ea0c2"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Verdana" size="12"/>
+				</textElement>
+				<text><![CDATA[AMOUNT]]></text>
+			</staticText>
+			<textField pattern="#,##0.00;#,##0.00">
+				<reportElement x="1750" y="61" width="189" height="21" uuid="e59afe85-79da-4816-b3f7-f699cb427fef">
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Verdana" size="12"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{FAILURE_TRAN_AMOUNT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1750" y="40" width="189" height="21" uuid="4750d262-5181-4098-988f-2c1ff49aa564">
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Verdana" size="12"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{FAILURE_TRAN_COUNT}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>
