@@ -2,6 +2,7 @@ package com.bornfire.entity;
 
 import javax.validation.constraints.NotBlank;
 
+@com.fasterxml.jackson.annotation.JsonIgnoreProperties(ignoreUnknown = true)
 public class CIMDirectMerchantRemitterAccount {
 private String SchmType;
 	

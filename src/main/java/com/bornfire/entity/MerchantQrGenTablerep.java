@@ -21,7 +21,7 @@ public interface MerchantQrGenTablerep extends JpaRepository<MerchantQrGenTable,
 	 * ,nativeQuery=true) String findByBilNumber(String billnumber);
 	 */
 	
-	@Query(value="select * from BIPS_MERCHANT_QRCODE_GEN_TABLE WHERE reference_label = ?1",nativeQuery=true)
+	@Query(value="select * from BIPS_MERCHANT_QRCODE_GEN_TABLE WHERE (reference_label = ?1 OR p_id = ?1) and ROWNUM = 1",nativeQuery=true)
 	MerchantQrGenTable getRecordByRefLable(String refLable);
 	
 }

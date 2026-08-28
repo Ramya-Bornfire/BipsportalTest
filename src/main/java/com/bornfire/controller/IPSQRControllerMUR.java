@@ -116,7 +116,7 @@ public class IPSQRControllerMUR {
 		merchantQRgenerator.setCustomer_label(ms.getCustomer_label());
 		merchantQRgenerator.setStore_label(ms.getStore_label());
 		merchantQRgenerator.setTerminal_label(ms.getTerminal_label());
-		merchantQRgenerator.setReference_label(ms.getReference_label());
+		merchantQRgenerator.setReference_label(p_id);
 		merchantQRgenerator.setPurpose_of_tran(ms.getPurpose_of_tran());
 		merchantQRgenerator.setAdditional_details(ms.getAdd_details_req());
 		merchantQRgenerator.setBill_number(ms.getTr());
@@ -229,47 +229,47 @@ public class IPSQRControllerMUR {
 		merchantQRgenerator.setTransaction_amt(cimmaudynamic.getTran_amt());
 		merchantQRgenerator.setZip_code(ms.getPincode());
 
-		if (cimmaudynamic.getBill_num().equals("null") && cimmaudynamic.getBill_num().equals("")) {
+		if (cimmaudynamic.getBill_num() == null || cimmaudynamic.getBill_num().equals("null") || cimmaudynamic.getBill_num().equals("")) {
 			merchantQRgenerator.setBill_number(ms.getBill_number());
 		} else {
 			merchantQRgenerator.setBill_number(cimmaudynamic.getBill_num());
 		}
-		if (cimmaudynamic.getLoy_num().equals("null") && cimmaudynamic.getLoy_num().equals("")) {
+		if (cimmaudynamic.getLoy_num() == null || cimmaudynamic.getLoy_num().equals("null") || cimmaudynamic.getLoy_num().equals("")) {
 			merchantQRgenerator.setLoyalty_number(ms.getLoyalty_number());
 		} else {
 			merchantQRgenerator.setLoyalty_number(cimmaudynamic.getLoy_num());
 		}
-		if (cimmaudynamic.getMob_num().equals("null") && cimmaudynamic.getMob_num().equals("")) {
+		if (cimmaudynamic.getMob_num() == null || cimmaudynamic.getMob_num().equals("null") || cimmaudynamic.getMob_num().equals("")) {
 			merchantQRgenerator.setMobile(ms.getMerchant_cont_details());
 		} else {
 			merchantQRgenerator.setMobile(cimmaudynamic.getMob_num());
 		}
-		if (cimmaudynamic.getCust_label().equals("null") && cimmaudynamic.getCust_label().equals("")) {
+		if (cimmaudynamic.getCust_label() == null || cimmaudynamic.getCust_label().equals("null") || cimmaudynamic.getCust_label().equals("")) {
 			merchantQRgenerator.setCustomer_label(ms.getCustomer_label());
 		} else {
 			merchantQRgenerator.setCustomer_label(cimmaudynamic.getCust_label());
 		}
-		if (cimmaudynamic.getSto_label().equals("null") && cimmaudynamic.getSto_label().equals("")) {
+		if (cimmaudynamic.getSto_label() == null || cimmaudynamic.getSto_label().equals("null") || cimmaudynamic.getSto_label().equals("")) {
 			merchantQRgenerator.setStore_label(ms.getStore_label());
 		} else {
 			merchantQRgenerator.setStore_label(cimmaudynamic.getSto_label());
 		}
-		if (cimmaudynamic.getTer_label().equals("null") && cimmaudynamic.getTer_label().equals("")) {
+		if (cimmaudynamic.getTer_label() == null || cimmaudynamic.getTer_label().equals("null") || cimmaudynamic.getTer_label().equals("")) {
 			merchantQRgenerator.setTerminal_label(ms.getTerminal_label());
 		} else {
 			merchantQRgenerator.setTerminal_label(cimmaudynamic.getTer_label());
 		}
-		if (cimmaudynamic.getRef_label().equals("null") && cimmaudynamic.getRef_label().equals("")) {
-			merchantQRgenerator.setReference_label(ms.getReference_label());
+		if (cimmaudynamic.getRef_label() == null || cimmaudynamic.getRef_label().equals("null") || cimmaudynamic.getRef_label().equals("")) {
+			merchantQRgenerator.setReference_label(p_id);
 		} else {
 			merchantQRgenerator.setReference_label(cimmaudynamic.getRef_label());
 		}
-		if (cimmaudynamic.getPur_tran().equals("null") && cimmaudynamic.getPur_tran().equals("")) {
+		if (cimmaudynamic.getPur_tran() == null || cimmaudynamic.getPur_tran().equals("null") || cimmaudynamic.getPur_tran().equals("")) {
 			merchantQRgenerator.setPurpose_of_tran(ms.getPurpose_of_tran());
 		} else {
 			merchantQRgenerator.setPurpose_of_tran(cimmaudynamic.getPur_tran());
 		}
-		if (cimmaudynamic.getAdd_det().equals("null") && cimmaudynamic.getAdd_det().equals("")) {
+		if (cimmaudynamic.getAdd_det() == null || cimmaudynamic.getAdd_det().equals("null") || cimmaudynamic.getAdd_det().equals("")) {
 			merchantQRgenerator.setAdditional_details(ms.getAdd_details_req());
 		} else {
 			merchantQRgenerator.setAdditional_details(cimmaudynamic.getAdd_det());

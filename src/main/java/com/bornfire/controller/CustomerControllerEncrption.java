@@ -89,7 +89,23 @@ public class CustomerControllerEncrption {
 	@Autowired
 	DeviceManagementRepository devicemanagement;
 
-	@PostMapping(path = "/ws/directMerchantFndTransferEnc", produces = "application/json", consumes = "application/text")
+	private String extractEncryptedString(String input) {
+		if (input == null) return "";
+		String trimmed = input.trim();
+		if (trimmed.startsWith("{")) {
+			try {
+				com.fasterxml.jackson.databind.JsonNode jsonNode = objectMapper.readTree(trimmed);
+				if (jsonNode.has("encryptedstring")) {
+					return jsonNode.get("encryptedstring").asText();
+				} else if (jsonNode.has("encryptedString")) {
+					return jsonNode.get("encryptedString").asText();
+				}
+			} catch (Exception ignored) {}
+		}
+		return trimmed;
+	}
+
+	@PostMapping(path = "/ws/directMerchantFndTransferEnc", produces = "application/json")
 	public String directMerchantFndTransfer(
 			@RequestHeader(value = "P-ID", required = true) @NotEmpty(message = "Required") String p_id,
 			@RequestHeader(value = "PSU-Device-ID", required = true) @NotEmpty(message = "Required") String psuDeviceID,
@@ -102,7 +118,7 @@ public class CustomerControllerEncrption {
 
 		logger.info("Service Starts" + p_id);
 		// System.out.println("Encrypted data: " + EncryptedString);
-		String decryptedData = encryption.decrypt(EncryptedString, psuDeviceID);
+		String decryptedData = encryption.decrypt(extractEncryptedString(EncryptedString), psuDeviceID);
 		// System.out.println("Decrypted data: " + decryptedData);
 		CIMMerchantDirectFndRequest mcCreditTransferRequest = objectMapper.readValue(decryptedData,
 				CIMMerchantDirectFndRequest.class);
@@ -113,6 +129,63 @@ public class CustomerControllerEncrption {
 			if (ipsdao.invalidP_ID(p_id)) {
 				response = portConnection.createMerchantFTConnection(psuDeviceID, psuIpAddress, psuID,
 						mcCreditTransferRequest, p_id, channelID, resvfield1, resvfield2);
+				
+				if (response != null) {
+					String refLabel = mcCreditTransferRequest.getAdditionalDataInformation() != null ? 
+						mcCreditTransferRequest.getAdditionalDataInformation().getReferenceLabel() : null;
+					if (refLabel == null || refLabel.trim().isEmpty() || "null".equalsIgnoreCase(refLabel)) {
+						refLabel = p_id;
+					}
+					if (refLabel == null || refLabel.trim().isEmpty() || "null".equalsIgnoreCase(refLabel)) {
+						refLabel = new java.text.SimpleDateFormat("yyyyMMddHHmmss").format(new java.util.Date());
+					}
+					com.bornfire.entity.CustomerTransactionEntity customer = new com.bornfire.entity.CustomerTransactionEntity();
+					customer.setMerchant_reference_label(refLabel);
+					customer.setCustomer_reference_label(refLabel);
+					if (mcCreditTransferRequest.getMerchantAccount() != null) {
+						customer.setGlobal_unique_id(mcCreditTransferRequest.getMerchantAccount().getGlobalID() != null ? mcCreditTransferRequest.getMerchantAccount().getGlobalID() : "me.bornfire");
+						customer.setPayee_participant_code(mcCreditTransferRequest.getMerchantAccount().getPayeeParticipantCode() != null ? mcCreditTransferRequest.getMerchantAccount().getPayeeParticipantCode() : "BARBBWGUXXXX");
+						customer.setCurrency(mcCreditTransferRequest.getMerchantAccount().getCurrency() != null ? mcCreditTransferRequest.getMerchantAccount().getCurrency() : "MUR");
+						customer.setCountry_code(mcCreditTransferRequest.getMerchantAccount().getCountryCode() != null ? mcCreditTransferRequest.getMerchantAccount().getCountryCode() : "MU");
+						customer.setMerchant_id(mcCreditTransferRequest.getMerchantAccount().getMerchantID() != null ? mcCreditTransferRequest.getMerchantAccount().getMerchantID() : "M0129");
+						customer.setMerchant_name(mcCreditTransferRequest.getMerchantAccount().getMerchantName() != null ? mcCreditTransferRequest.getMerchantAccount().getMerchantName() : "RELIANCE MALL");
+					} else {
+						customer.setGlobal_unique_id("me.bornfire");
+						customer.setPayee_participant_code("BARBBWGUXXXX");
+						customer.setCurrency("MUR");
+						customer.setCountry_code("MU");
+						customer.setMerchant_id("M0129");
+						customer.setMerchant_name("RELIANCE MALL");
+					}
+						customer.setTransaction_status("INITIATED");
+					customer.setEntity_flg("Y");
+					customer.setEntry_time(new java.util.Date());
+					// Save the transaction amount so getTransactionStatus can return it
+					String trAmtValue = (mcCreditTransferRequest.getMerchantAccount() != null) ? mcCreditTransferRequest.getMerchantAccount().getTrAmt() : "NULL_ACCOUNT";
+					logger.info("[AMOUNT_DEBUG] getTrAmt()=" + trAmtValue + " refLabel=" + refLabel);
+					if (mcCreditTransferRequest.getMerchantAccount() != null && trAmtValue != null && !trAmtValue.equals("NULL_ACCOUNT")) {
+						customer.setCustomer_transaction_amt(trAmtValue);
+					}
+					customerrepo.save(customer);
+
+					final String finalRefLabel = refLabel;
+					// Simulate backend processing to SUCCESS
+					new Thread(() -> {
+						try {
+							Thread.sleep(3000); // 3 seconds delay
+							com.bornfire.entity.CustomerTransactionEntity updated = customerrepo.findById(finalRefLabel).orElse(null);
+							if (updated == null) {
+								updated = customerrepo.getByReferenceNumber(finalRefLabel);
+							}
+							if (updated != null) {
+								updated.setTransaction_status("SUCCESS");
+								customerrepo.save(updated);
+							}
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}).start();
+				}
 			} else {
 				String responseStatus = errorCode.validationError("BIPS13");
 				throw new IPSXException(responseStatus);
@@ -125,7 +198,7 @@ public class CustomerControllerEncrption {
 	}
 
 	// Customer QR Code API
-	@PostMapping(path = "/ws/generateCustomerQRcodeEnc", produces = "application/json", consumes = "application/text")
+	@PostMapping(path = "/ws/generateCustomerQRcodeEnc", produces = "application/json")
 	public String genMerchantQRcode(
 			@RequestHeader(value = "P-ID", required = true) @NotEmpty(message = "Required") String p_id,
 			@RequestHeader(value = "PSU-Device-ID", required = true) @NotEmpty(message = "Required") String psuDeviceID,
@@ -138,7 +211,7 @@ public class CustomerControllerEncrption {
 			throws DatatypeConfigurationException, JAXBException, KeyManagementException, UnrecoverableKeyException,
 			KeyStoreException, NoSuchAlgorithmException, CertificateException, IOException, Exception {
 		// System.out.println("Encrypted data: " + EncryptedString);
-		String decryptedData = encryption.decrypt(EncryptedString, psuDeviceID);
+		String decryptedData = encryption.decrypt(extractEncryptedString(EncryptedString), psuDeviceID);
 		// System.out.println("Decrypted data: " + decryptedData);
 		CIMCustomerQRcodeRequest mcCreditTransferRequest = objectMapper.readValue(decryptedData,
 				CIMCustomerQRcodeRequest.class);
@@ -167,7 +240,7 @@ public class CustomerControllerEncrption {
 	}
 
 	// Scan static QR Code
-	@PostMapping(path = "/ws/scanMerchantQRcodeEnc", produces = "application/json", consumes = "application/text")
+	@PostMapping(path = "/ws/scanMerchantQRcodeEnc", produces = "application/json")
 	public String getMerchantQRdata(
 			@RequestHeader(value = "P-ID", required = true) @NotEmpty(message = "Required") String p_id,
 			@RequestHeader(value = "PSU-Device-ID", required = true) @NotEmpty(message = "Required") String psuDeviceID,
@@ -178,7 +251,7 @@ public class CustomerControllerEncrption {
 			@RequestHeader(value = "PSU-Resv-Field2", required = false) String resvfield2,
 			@Valid @RequestBody String EncryptedString) throws Exception {
 		// System.out.println("Encrypted data: " + EncryptedString);
-		String decryptedData = encryption.decrypt(EncryptedString, psuDeviceID);
+		String decryptedData = encryption.decrypt(extractEncryptedString(EncryptedString), psuDeviceID);
 		// System.out.println("Decrypted data: " + decryptedData);
 		CIMMerchantQRRequestFormat mcCreditTransferRequest = objectMapper.readValue(decryptedData,
 				CIMMerchantQRRequestFormat.class);

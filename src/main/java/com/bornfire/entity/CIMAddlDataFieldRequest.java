@@ -2,6 +2,7 @@ package com.bornfire.entity;
 
 import javax.validation.constraints.Size;
 
+@com.fasterxml.jackson.annotation.JsonIgnoreProperties(ignoreUnknown = true)
 public class CIMAddlDataFieldRequest {
 	@Size(max = 25, message = "BillNumber should not exceed 25 characters")
 	private String BillNumber;

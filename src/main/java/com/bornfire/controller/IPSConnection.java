@@ -911,7 +911,7 @@ public class IPSConnection {
 				String[] titletextDesc = { "Scan here to pay" };
 				// System.out.println("encodeQRresponse.getQrMsg()---------->" +
 				// encodeQRresponse.getQrMsg());
-				String qrImageCode = generateQRCode(encodeQRresponse.getQrMsg(), displayText, titletextDesc, 350, 350);
+				String qrImageCode = generateQRCode(encodeQRresponse.getQrMsg(), displayText, titletextDesc, 390, 340);
 				response.setBase64QR(qrImageCode);
 				System.out.print("qrImageCode Successfully------------------>" + qrImageCode);
 				ipsDao.updateMerchantQRData(p_id, "SUCCESS", qrImageCode);

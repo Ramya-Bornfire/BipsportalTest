@@ -6,6 +6,7 @@ import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.security.UnrecoverableKeyException;
 import java.security.cert.CertificateException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -600,7 +601,11 @@ public class QrController {
 		if (Billnumberexist != null && Billnumberexist.equals(request.getCustomer_bill_number())) {
 			return "Duplicate Bill Number";
 		}
-		customer.setCustomer_reference_label(request.getCustomer_reference_label());
+		String refLabel = request.getCustomer_reference_label();
+		if (refLabel == null || refLabel.trim().isEmpty() || "null".equalsIgnoreCase(refLabel)) {
+			refLabel = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
+		}
+		customer.setCustomer_reference_label(refLabel);
 		String Accountnumber = merchantmasterRep.getMerchantaccountnumber(request.getMerchant_id());
 		customer.setMerchant_acct_no(Accountnumber);
 		customer.setMerchant_id(request.getMerchant_id());
@@ -616,7 +621,7 @@ public class QrController {
 		customer.setCountry_code("BW");
 		customer.setPostal_code(request.getPostal_code());
 		customer.setMerchant_mob_no(request.getMerchant_mob_no());
-		customer.setMerchant_reference_label(request.getCustomer_reference_label());
+		customer.setMerchant_reference_label(refLabel);
 		customer.setMerchant_status(request.getMerchant_status());
 		customer.setUnit_id(request.getUnit_id());
 		MerchantQrGenTable merchanrGenEntity = mercantQrGenTableRep.getRecordByRefLable(request.getCustomer_reference_label());
@@ -629,9 +634,30 @@ public class QrController {
 		mercantQrGenTableRep.save(merchanrGenEntity);
 		}
 		
+		customer.setTransaction_status("INITIATED");
 		customer.setEntity_flg("Y");
 		customer.setEntry_time(new Date());
 		customerrepo.save(customer);
+
+		// Simulate backend processing to SUCCESS
+		new Thread(() -> {
+			try {
+				Thread.sleep(3000); // 3 seconds delay
+				CustomerTransactionEntity updated = customerrepo.findById(customer.getMerchant_reference_label()).orElse(null);
+				if (updated == null) {
+					updated = customerrepo.getByReferenceNumber(customer.getCustomer_reference_label());
+				}
+				if (updated == null) {
+					updated = customerrepo.getByReferenceNumber(customer.getMerchant_reference_label());
+				}
+				if (updated != null) {
+					updated.setTransaction_status("SUCCESS");
+					customerrepo.save(updated);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}).start();
 
 		return "Successfully Initiated";
 	}
@@ -684,6 +710,19 @@ public class QrController {
 			return response;
 		}
 		return null;
+	}
+
+	@GetMapping("/ws/getTransactionStatus")
+	public ResponseEntity<String> getTransactionStatus(@RequestParam String reference_number) {
+		CustomerTransactionEntity request = customerrepo.findById(reference_number).orElse(null);
+		if (request == null) {
+			request = customerrepo.getByReferenceNumber(reference_number);
+		}
+		if (request != null && request.getTransaction_status() != null) {
+			String amount = (request.getCustomer_transaction_amt() != null) ? request.getCustomer_transaction_amt() : "";
+			return new ResponseEntity<>(request.getTransaction_status() + "|" + amount, HttpStatus.OK);
+		}
+		return new ResponseEntity<>("NOT_FOUND|", HttpStatus.OK);
 	}
 
 	@GetMapping("/getTranAmountLimit")

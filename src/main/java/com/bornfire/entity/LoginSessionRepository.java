@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface LoginSessionRepository extends JpaRepository<LoginSessionEntity,String>{
 
-	@Query(value="select * from login_session WHERE user_id=?1",nativeQuery=true) 
+	@Query(value="select * from login_session WHERE user_id=?1 and ROWNUM = 1",nativeQuery=true) 
     LoginSessionEntity findByuserID(String MerchantRep);
 }

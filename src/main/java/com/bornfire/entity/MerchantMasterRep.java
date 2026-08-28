@@ -16,7 +16,7 @@ Optional<MerchantMaster> findById(String directorId);
 	@Query(value = "select * from MERCHANT_MASTER_TABLE where del_flg='N' ", nativeQuery = true)
 	List<MerchantMaster> findAllData();
 
-	@Query(value = "select * from MERCHANT_MASTER_TABLE where merchant_id= ?1 and del_flg='N'", nativeQuery = true)
+	@Query(value = "select * from MERCHANT_MASTER_TABLE where merchant_id= ?1 and del_flg='N' and ROWNUM = 1", nativeQuery = true)
 	MerchantMaster findByIdCustom(String Id);
 	
 	@Query(value = "select * from MERCHANT_MASTER_TABLE  where del_flg ='N'  UNION ALL select * from MERCHANT_MASTER_TABLE_MOD  where entity_flg ='N'", nativeQuery = true)

@@ -49,6 +49,7 @@ public class CustomerTransactionEntity {
 	private String country_code;
 	private String postal_code;
 	private String merchant_status;
+	private String transaction_status;
 	private String merchant_mob_no;
 	@Id
 	private String merchant_reference_label;
@@ -290,6 +291,14 @@ public class CustomerTransactionEntity {
 		this.merchant_status = merchant_status;
 	}
 
+	public String getTransaction_status() {
+		return transaction_status;
+	}
+
+	public void setTransaction_status(String transaction_status) {
+		this.transaction_status = transaction_status;
+	}
+
 	public String getMerchant_mob_no() {
 		return merchant_mob_no;
 	}
@@ -446,7 +455,7 @@ public class CustomerTransactionEntity {
 			@Size(min = 4, max = 4, message = "MerchantCategoryCode should contains 4 characters") String mcc,
 			@NotBlank(message = "Currency Required") @Size(min = 3, max = 3, message = "Currency should contains 3 characters") String currency,
 			@NotBlank(message = "CountryCode Required") @Size(max = 2, message = "CountryCode should not exceed 2 characters") String country_code,
-			String postal_code, String merchant_status, String merchant_mob_no, String merchant_reference_label,
+			String postal_code, String merchant_status, String transaction_status, String merchant_mob_no, String merchant_reference_label,
 			String merchant_deviceid, String merchant_terminal_label,
 			@Size(max = 38, message = "MerchantAcctNumber should not exceed 38 characters") String merchant_acct_no,
 			@NotBlank(message = "Merchant ID Required") @Size(max = 15, message = "Merchant ID should not exceed 15 characters") String merchant_id,
@@ -481,6 +490,7 @@ public class CustomerTransactionEntity {
 		this.country_code = country_code;
 		this.postal_code = postal_code;
 		this.merchant_status = merchant_status;
+		this.transaction_status = transaction_status;
 		this.merchant_mob_no = merchant_mob_no;
 		this.merchant_reference_label = merchant_reference_label;
 		this.merchant_deviceid = merchant_deviceid;
@@ -519,7 +529,7 @@ public class CustomerTransactionEntity {
 				+ ", purpose_of_tran=" + purpose_of_tran + ", additional_details=" + additional_details
 				+ ", customer_remarks=" + customer_remarks + ", customer_status=" + customer_status + ", mcc=" + mcc
 				+ ", currency=" + currency + ", country_code=" + country_code + ", postal_code=" + postal_code
-				+ ", merchant_status=" + merchant_status + ", merchant_mob_no=" + merchant_mob_no
+				+ ", merchant_status=" + merchant_status + ", transaction_status=" + transaction_status + ", merchant_mob_no=" + merchant_mob_no
 				+ ", merchant_reference_label=" + merchant_reference_label + ", merchant_deviceid=" + merchant_deviceid
 				+ ", merchant_terminal_label=" + merchant_terminal_label + ", merchant_acct_no=" + merchant_acct_no
 				+ ", merchant_id=" + merchant_id + ", merchant_name=" + merchant_name + ", entry_user=" + entry_user

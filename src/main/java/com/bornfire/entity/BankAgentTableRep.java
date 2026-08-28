@@ -14,7 +14,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface BankAgentTableRep extends JpaRepository<BankAgentTable, String> {
 
-	@Query(value = "select * from BIPS_OTHER_BANK_AGENT_TABLE where bank_agent=?1", nativeQuery = true)
+	@Query(value = "select * from BIPS_OTHER_BANK_AGENT_TABLE where bank_agent=?1 and ROWNUM = 1", nativeQuery = true)
 	Optional<BankAgentTable> findByCustomBankName(String bankAgent);
 	
 	@Query(value = "select * from BIPS_OTHER_BANK_AGENT_TABLE where bank_agent=?1 and agent_type='Government'", nativeQuery = true)

@@ -10,4 +10,6 @@ public interface CustomerTransactionRepo extends JpaRepository<CustomerTransacti
 	@Query(value="select * from customer_transaction_details WHERE customer_id=?1 AND customer_reference_label=?2",nativeQuery=true)
 	CustomerTransactionEntity getDetails(String customer_id,String reference_number);
 	
+	@Query(value="select * from customer_transaction_details WHERE (merchant_reference_label=?1 OR customer_reference_label=?1) AND ROWNUM = 1", nativeQuery=true)
+	CustomerTransactionEntity getByReferenceNumber(String reference_number);
 }
