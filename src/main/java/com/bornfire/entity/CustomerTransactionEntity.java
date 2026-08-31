@@ -64,7 +64,17 @@ public class CustomerTransactionEntity {
 	@Size(max = 25, message = "MerchantName should not exceed 25 characters")
 	private String merchant_name;
 	private String entry_user;
-	private Date entry_time;
+	/* private Date entry_time; */
+	
+	private String entry_time;
+	public String getEntry_time() {
+		return entry_time;
+	}
+
+	public void setEntry_time(String entry_time) {
+		this.entry_time = entry_time;
+	}
+
 	private String modify_user;
 	private Date modify_time;
 	private String verify_user;
@@ -363,13 +373,11 @@ public class CustomerTransactionEntity {
 		this.entry_user = entry_user;
 	}
 
-	public Date getEntry_time() {
-		return entry_time;
-	}
-
-	public void setEntry_time(Date entry_time) {
-		this.entry_time = entry_time;
-	}
+	/*
+	 * public Date getEntry_time() { return entry_time; }
+	 * 
+	 * public void setEntry_time(Date entry_time) { this.entry_time = entry_time; }
+	 */
 
 	public String getModify_user() {
 		return modify_user;
@@ -442,8 +450,12 @@ public class CustomerTransactionEntity {
 	public void setUnit_id(String unit_id) {
 		this.unit_id = unit_id;
 	}
+	
+	
 
 	public CustomerTransactionEntity(String payload_format_indicator,
+			
+			
 			@Size(min = 2, max = 2, message = "PointOfInitiationFormat must contains 2 characters") String poi_method,
 			@NotBlank(message = "GloballyUniqueIdentifier Required") @Size(max = 11, message = "GloballyUniqueIdentifier should not exceed 11 characters") String global_unique_id,
 			@NotBlank(message = "PayeeParticipantCode Required") @Size(min = 8, max = 12, message = "PayeeParticipantCode should not exceed 12 characters") String payee_participant_code,
@@ -462,6 +474,8 @@ public class CustomerTransactionEntity {
 			@NotBlank(message = "MerchantName Required") @Size(max = 25, message = "MerchantName should not exceed 25 characters") String merchant_name,
 			String entry_user, Date entry_time, String modify_user, Date modify_time, String verify_user,
 			Date verify_time, String entity_flg, String modify_flg, String del_flg, String user_id, String unit_id) {
+		
+		
 		super();
 		this.payload_format_indicator = payload_format_indicator;
 		this.poi_method = poi_method;

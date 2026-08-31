@@ -1,4 +1,5 @@
 package com.bornfire.entity;
+import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -12,4 +13,11 @@ public interface CustomerTransactionRepo extends JpaRepository<CustomerTransacti
 	
 	@Query(value="select * from customer_transaction_details WHERE (merchant_reference_label=?1 OR customer_reference_label=?1) AND ROWNUM = 1", nativeQuery=true)
 	CustomerTransactionEntity getByReferenceNumber(String reference_number);
+	
+	
+	//insert the query+method, then close the interface
+	@Query(value="select * from customer_transaction_details WHERE user_id=?1 AND merchant_id=?2 ORDER BY entry_time DESC", nativeQuery=true)
+	List<CustomerTransactionEntity> getTransactionListForUser(String user_id, String merchant_id);
+
 }
+

@@ -1,6 +1,7 @@
 package com.bornfire.controller;
 
 import java.math.BigDecimal;
+import com.bornfire.entity.CustomerTransactionEntity;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -514,4 +515,9 @@ public class AdminModule {
 		return service.getUniqueNpId();
 	}
 
+	@GetMapping("/CustomerTransactionListForUser")
+	public List<CustomerTransactionEntity> CustomerTransactionListForUser(@RequestParam String user_id,
+			@RequestParam String merchant_id) {
+		return service.getCustomerTransactionList(user_id, merchant_id);
+	}
 }

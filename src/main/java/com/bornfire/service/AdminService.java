@@ -1,6 +1,8 @@
 package com.bornfire.service;
 
 import java.util.Collections;
+import com.bornfire.entity.CustomerTransactionEntity;
+import com.bornfire.entity.CustomerTransactionRepo;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -414,4 +416,20 @@ public class AdminService {
 			return newNpId;
 		}
 	}
+	
+	
+	@Autowired
+	CustomerTransactionRepo customerTransactionRepo;
+
+	public List<CustomerTransactionEntity> getCustomerTransactionList(String user_id, String merchant_id) {
+		List<CustomerTransactionEntity> response = customerTransactionRepo.getTransactionListForUser(user_id, merchant_id);
+		if (response.isEmpty()) {
+			return Collections.emptyList();
+		} else {
+			return response;
+		}
+	}
 }
+	
+	
+
