@@ -64,16 +64,16 @@ public class CustomerTransactionEntity {
 	@Size(max = 25, message = "MerchantName should not exceed 25 characters")
 	private String merchant_name;
 	private String entry_user;
-	/* private Date entry_time; */
+	private Date entry_time; 
 	
-	private String entry_time;
-	public String getEntry_time() {
-		return entry_time;
-	}
-
-	public void setEntry_time(String entry_time) {
-		this.entry_time = entry_time;
-	}
+//	private String entry_time;
+//	public String getEntry_time() {
+//		return entry_time;
+//	}
+//
+//	public void setEntry_time(String entry_time) {
+//		this.entry_time = entry_time;
+//	}
 
 	private String modify_user;
 	private Date modify_time;
@@ -373,11 +373,11 @@ public class CustomerTransactionEntity {
 		this.entry_user = entry_user;
 	}
 
-	/*
-	 * public Date getEntry_time() { return entry_time; }
-	 * 
-	 * public void setEntry_time(Date entry_time) { this.entry_time = entry_time; }
-	 */
+	
+    public Date getEntry_time() { return entry_time; }
+	 
+	public void setEntry_time(Date entry_time) { this.entry_time = entry_time; }
+	
 
 	public String getModify_user() {
 		return modify_user;
